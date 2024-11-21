@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <title>Song birds</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Song<span>bird</span></div>
+            <div class="score">Score: <span id="score">0</span></div>
+        </header>
+    
+        <nav>
+            <ul id="questionList">
+                <li>Разминка</li>
+                <li>Воробьиные</li>
+                <li>Лесные птицы</li>
+                <li>Певчие птицы</li>
+                <li>Хищные птицы</li>
+                <li>Морские птицы</li>
+            </ul>
+        </nav>
+    
+        <main class="qush">
+            <div class="start-page active" id="startPage">
+                <h1>Welcome to Songbird Quiz</h1>
+                <p>Test your knowledge of bird songs and calls!</p>
+                <button class="start-button" id="startButton">Start Quiz</button>
+            </div>
+    
+            <div class="quiz-page" id="quizPage">
+                <div class="mystery-bird">
+                    <img id="mysteryBirdImage" src="./assets/images/bird.jpg" alt="Mystery Bird" />
+                    <div class="mystery-bottom">
+                        <h2 id="mysteryBirdName">******</h2>
+                        <div class="audio-player">
+                            <button class="play-button" id="mysteryAudioButton" aria-label="Play">▶</button>
+                            <div class="progress-bar">
+                                <div class="progress" id="mysteryProgress"></div>
+                            </div>
+                            <span class="time" id="mysteryTime">00:00 / 00:00</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="quiz-content">
+                    <ul class="bird-list" id="birdList"></ul>
+
+                    <div class="bird-details" id="birdDetails">
+                        <p>Послушайте плеер.<br>Выберите птицу из списка.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="results-page" id="resultsPage">
+                <h1>Quiz Results</h1>
+                <p>Your score: <span id="finalScore">0</span></p>
+                <p id="congratulations"></p>
+                <button class="play-again-button" id="playAgainButton">Play Again</button>
+            </div>
+        </main>
+    
+        <footer>
+            <button class="next-button" id="nextButton" disabled>Next Question</button>
+        </footer>
+    </div>
+
+    <script type="module" defer src="./app.js"></script>
+</body>
+</html>
