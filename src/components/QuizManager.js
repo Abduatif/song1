@@ -16,9 +16,12 @@ export class QuizManager {
     }
 
     initQuestion() {
+        const audioButton = document.querySelector('.play-button')
         const categoryBird = birdsData[this.currentCategory];
         const randomNumber = Math.floor(Math.random() * categoryBird.length);
         this.currentBird = categoryBird[randomNumber];
+
+        audioButton.dataset.audio = this.currentBird.audio;
 
        this.uiUpdater.updateBirdList(categoryBird);
 
