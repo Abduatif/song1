@@ -7,17 +7,16 @@ export class UIUpdater {
         quizPage.classList.add('active');
     }
 
+    updateBirdList(categoryBird) {
+        const birdList = document.querySelector('#birdList');
 
-updateBirdList(categoryBird){
-const birdList = document.querySelector('#birdList');
+        categoryBird.forEach((bird) => {
+            const li = document.createElement('li');
+            li.classList.add('bird-option');
+            li.textContent = bird.name;
+            li.dataset.bird = bird.name;
 
-categoryBird.forEach((bird) => {
-    const li = document.createElement('li');
-    li.classList.add('bird-option');
-    li.textContent = bird.name;
-    li.dataset.brid = bird.name;
-
-    birdList.appendChild(li)
-   })
-  }
+            birdList.appendChild(li);
+        })
+    }
 }
