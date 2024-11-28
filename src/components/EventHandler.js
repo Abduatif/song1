@@ -6,7 +6,7 @@ export class EventHandler {
     init() {
         const startQuiz = document.querySelector('.start-button');
         const playButton = document.querySelector('.play-button');
-        const birdList = document.querySelector('.bird-list'); // yangi
+        const birdList = document.querySelector('.bird-list'); 
 
         birdList.addEventListener('click', (e) => {
             if(e.target.classList.contains('bird-option')) {

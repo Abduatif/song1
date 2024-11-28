@@ -9,7 +9,7 @@ export class QuizManager {
         this.currentCategory = 0;
         this.currentBird = null;
         this.givenCorrectAnswer = false;
-        this.score = 0; 
+        this.score = 5; 
     }
     
 
@@ -30,21 +30,21 @@ export class QuizManager {
     }
 
     handleBirdSelection(element) {
-        if (this.givenCorrectAnswer) return; // Agar to'g'ri javob berilgan bo'lsa, hech narsa qilmaydi.
+        if (this.givenCorrectAnswer) return; 
+
     
-        // Tanlangan javobni tekshirish
         if (element.dataset.bird === this.currentBird.name) {
-            this.givenCorrectAnswer = true; // Javob to'g'ri ekanligini belgilash
+            this.givenCorrectAnswer = true; 
             element.classList.add('correct');
-            this.score += 5; // To'g'ri javob uchun 5 ball qo'shish
+            this.score += 5; 
         } else {
             element.classList.add('incorrect');
-            this.score -= 1; // Noto'g'ri javob uchun 1 ball ayirish
+            this.score -= 1;
         }
     
-        // Ballar UI-ni yangilash
+
         document.getElementById('score').textContent = this.score;
-        console.log( this.score); // Konsolga chiqazish
+        console.log( this.score); 
     }
     
 }
