@@ -9,7 +9,8 @@ export class QuizManager {
         this.currentCategory = 0;
         this.currentBird = null;
         this.givenCorrectAnswer = false;
-        this.score = 5; 
+        this.score = 0;
+        this.attemps = 0; 
     }
     
 
@@ -31,20 +32,37 @@ export class QuizManager {
 
     handleBirdSelection(element) {
         if (this.givenCorrectAnswer) return; 
+  const choosen = birdsData[this.currentCategory].filter((bird)  => bird.name === element.dataset.bird) 
+  this.uiUpdater.showBirdDetail(choosen[0]) 
 
-    
+
         if (element.dataset.bird === this.currentBird.name) {
+            this.score = this.score + 5 - this.attemps
+            this.uiUpdater.updateScore(this.score)
             this.givenCorrectAnswer = true; 
             element.classList.add('correct');
-            this.score += 5; 
+            this.correctSounds()
+            this.uiUpdater.showMysteryBrid(this.currentBird);
         } else {
+            this.attemps++
             element.classList.add('incorrect');
-            this.score -= 1;
+            this.incorrectSounds();
         }
+
     
 
-        document.getElementById('score').textContent = this.score;
-        console.log( this.score); 
+      
+    }
+
+    correctSounds() {
+        const correctSounds = new Audio('./assets/sounds/rightanswer-95219.mp3');
+        correctSounds.play();
     }
     
+    incorrectSounds() {
+        const incorrectSounds = new Audio('./assets/sounds/wrong-answer-21-199825.mp3');
+        incorrectSounds.play();
+    }
 }
+
+
