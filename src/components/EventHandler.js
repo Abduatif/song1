@@ -4,6 +4,7 @@ export class EventHandler {
     }
 
     init() {
+        const nextButton = document.querySelector('#nextButton')
         const startQuiz = document.querySelector('.start-button');
         const playButton = document.querySelector('.play-button');
         const birdList = document.querySelector('.bird-list'); 
@@ -16,6 +17,10 @@ export class EventHandler {
 
         startQuiz.addEventListener('click', () => {
             this.quizManager.startQuiz();
+        })
+        nextButton.addEventListener('click', () =>{
+            this.quizManager.uiUpdater.clear();
+            this.quizManager.initQuestion();
         })
 
         playButton.addEventListener('click', (e) => {

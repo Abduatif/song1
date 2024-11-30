@@ -42,7 +42,9 @@ export class QuizManager {
             this.givenCorrectAnswer = true; 
             element.classList.add('correct');
             this.correctSounds()
-            this.uiUpdater.showMysteryBrid(this.currentBird);
+            this.uiUpdater.showMystery(this.currentBird);
+            this.uiUpdater.enableNextQuestion();
+            this.currentBird++;
         } else {
             this.attemps++
             element.classList.add('incorrect');

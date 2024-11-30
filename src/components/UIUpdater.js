@@ -1,4 +1,6 @@
 export class UIUpdater {
+
+
     startQuizUi() {
         const quizPage = document.querySelector('.quiz-page');
         const startPage = document.querySelector('.start-page');
@@ -6,10 +8,10 @@ export class UIUpdater {
         startPage.classList.remove('active');
         quizPage.classList.add('active');
     }
-
     updateBirdList(categoryBird) {
-        const birdList = document.querySelector('#birdList');
-        birdList.innerHTML = ''; 
+        const birdList = document.querySelector('.bird-list');
+
+        birdList.innerHTML = '';
 
         categoryBird.forEach((bird) => {
             const li = document.createElement('li');
@@ -22,52 +24,68 @@ export class UIUpdater {
     }
 
     updateScore(score) {
-        const scoreElement = document.querySelector('#score');
-        scoreElement.textContent = score;
+        const Score = document.querySelector('#score');
+        Score.textContent = score;
     }
 
-    addBirdSelectionEvent(categoryBird) {
-        const birdOptions = document.querySelectorAll('.bird-option');
-        birdOptions.forEach((option) => {
-            option.addEventListener('click', (e) => {
-                if (this.isAnswered) return;
+    showBirdDetail(bird) {
+        const birdDetail = document.querySelector('.bird-details');
 
-                const selectedBirdName = e.target.dataset.bird;
-                const selectedBird = categoryBird.find((bird) => bird.name === selectedBirdName);
+        birdDetail.innerHTML = `
+                    <img src="${bird.image}" alt="${bird.name}" />
+            <h2 class="bird-name">${bird.name}</h2>
+            <p class="bird-species">${bird.species}</p>
+            <div class="audio-player">
+                <button class="play-btn" data-audio="${bird.audio}" id="mysteryAudioButton" aria-label="Play">▶</button>
+                <div class="progress-bar">
+                    <div class="progress" id="mysteryProgress"></div>
+                </div>
+                <span class="time" id="mysteryTime">00:00 / 00:00</span>
+            </div>
+            <p class="bird-description">${bird.description}</p>
 
-                if (selectedBird) {
-                    this.showBirdDetail(selectedBird);
-                }
-            });
-        });
+        `
+    }
+    showMystery(currentBird) {
+        const mysteryBirdImg = document.querySelector('#mysteryBirdImage');
+        const mysteryBirdName = document.querySelector('#mysteryBirdName');
+        const nextQuestion = document.querySelector('.next-button');
+        const mysteryBirdAudio = document.querySelector('.audio-player');
+        const species = document.createElement('p');
+
+        mysteryBirdImg.src = currentBird.image;
+        mysteryBirdName.innerHTML = currentBird.name;
+        species.classList.add('mysteryBirdSpecies');
+        species.innerHTML = currentBird.species;
+
+
+        mysteryBirdName.insertAdjacentElement("afterend", species);
     }
 
-    showBirdDetail(selectedBird) {
-        const birdDetails = document.querySelector('.bird-details');
-        const mysteryBirdImage = document.getElementById('mysteryBirdImage');
-        const mysteryAudioButton = document.getElementById('mysteryAudioButton');
-        const mysteryProgress = document.getElementById('mysteryProgress');
-        const mysteryTime = document.getElementById('mysteryTime');
+    enableNextQuestion(){
+        const nextButton = document.querySelector('#nextButton');
 
-        birdDetails.innerHTML = `
-                  <img src="${selectedBird.image}" alt="${selectedBird.name}" />
-                        <h2 class="bird-name">${selectedBird.name}</h2>
-                        <p class="bird-species">${selectedBird.species}</p>
-                        <div class="audio-player">
-                            <button class="play-btn" data-audio="${selectedBird.audio}" id="mysteryAudioButton" aria-label="Play">▶️</button>
-                            <div class="progress-bar">
-                                <div class="progress" id="mysteryProgress"></div>
-                            </div>
-                            <span class="time" id="mysteryTime">00:00 / 00:00</span>
-                        </div>
-                        <p class="bird-description">${selectedBird.description}</p>
-                  `
+        nextButton.disabled = false;
 
-                mysteryBirdImage.src = selectedBird.image;
-                 mysteryAudioButton.dataset.audio = selectedBird.audio;
-                 mysteryAudioButton.addEventListener('click', () => { 
-                    this.audioPlayer.toggleAudio( mysteryAudioButton,
-                     mysteryProgress,
-                      mysteryTime);});
-                     } } 
-  
+    }
+
+    clear() {
+        const birdDetail = document.querySelector('.bird-details')
+        const mysteryBirdImage= document.querySelector('#mysteryBirdImage')
+        const bmysteryBirdName = document.querySelector('#mysteryBirdName')
+        const specis = document.querySelector('#specis')
+        const mysteryAudioButton = document.querySelector('#mysteryAudioButton')
+
+        mysteryAudioButton.dataset.audio ='';
+        bmysteryBirdName.textContent = '*****';
+        specis.textContent ='*****';
+        mysteryBirdImage.src = './assets/images/bird.jpg';
+
+        birdDetail.innerHTML = `
+         <p>Послушайте плеер.<br>Выберите птицу из списка.</p>
+        `
+
+    }
+
+   
+}
