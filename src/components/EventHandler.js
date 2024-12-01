@@ -4,9 +4,10 @@ export class EventHandler {
     }
 
     init() {
-        const nextButton = document.querySelector('#nextButton')
         const startQuiz = document.querySelector('.start-button');
-        const birdList = document.querySelector('.bird-list'); 
+        // const playButton = document.querySelector('.play-button');
+        const birdList = document.querySelector('.bird-list');
+        const nextButton = document.querySelector('#nextButton');
 
         birdList.addEventListener('click', (e) => {
             if(e.target.classList.contains('bird-option')) {
@@ -17,12 +18,15 @@ export class EventHandler {
         startQuiz.addEventListener('click', () => {
             this.quizManager.startQuiz();
         })
-        nextButton.addEventListener('click', () =>{
+        nextButton.addEventListener('click', () => {
             this.quizManager.uiUpdater.clear();
             this.quizManager.initQuestion();
+            nextButton.disabled = true;
         })
 
-     
+        // playButton.addEventListener('click', (e) => {
+        //     this.quizManager.audioPlayer.toggleAudio(e.target);
+        // })
 
     }
 }

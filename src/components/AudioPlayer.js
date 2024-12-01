@@ -1,20 +1,19 @@
 export class AudioPlayer {
     constructor(button) {
-        this.audio = new Audio(button.dataset)
-        this.button = button
+        this.audio = new Audio(button.dataset.audio); // yangi
+        this.button = button;
         this.init();
-        this.sound();
+        this.sound(); //yangi
     }
 
-    init(){
-        this.button.addEventListener('click',(e) => {
-            this.toggleAudio(e.target)
+    init() {
+        this.button.addEventListener('click', (e) => {
+            this.toggleAudio(e.target);
         })
     }
-    
 
     toggleAudio(button) {
-        if(this.audio && !this.audio.paused) {
+        if (this.audio && !this.audio.paused) {
             this.audio.pause();
             button.textContent = '▶';
         } else {
@@ -23,7 +22,7 @@ export class AudioPlayer {
     }
 
     playAudio(button) {
-        if(!this.audio) this.audio = new Audio(button.dataset.audio);
+        if (!this.audio) this.audio = new Audio(button.dataset.audio);
         const progressElement = button.nextElementSibling.querySelector('.progress');
         const timeElement = button.nextElementSibling.nextElementSibling;
 
@@ -49,14 +48,17 @@ export class AudioPlayer {
         return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     }
 
-    sound(){
-        const valumeInput = document.querySelector('#volume')
+    sound() {
+        const volumeInput = document.querySelector('#volume');
 
-        valumeInput.addEventListener('input', (e) =>{
-            this.audio.volume = e.target.value / 100
+        volumeInput.addEventListener('input', (e) => {
+            this.audio.volume = e.target.value / 100;
+
+            
         })
     }
-    
+
+
 
 
 }
