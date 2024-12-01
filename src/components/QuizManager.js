@@ -4,7 +4,6 @@ import { UIUpdater } from "./UIUpdater.js";
 
 export class QuizManager {
     constructor() {
-        this.audioPlayer = new AudioPlayer();
         this.uiUpdater = new UIUpdater();
         this.currentCategory = 0;
         this.currentBird = null;
@@ -34,6 +33,8 @@ export class QuizManager {
         if (this.givenCorrectAnswer) return; 
   const choosen = birdsData[this.currentCategory].filter((bird)  => bird.name === element.dataset.bird) 
   this.uiUpdater.showBirdDetail(choosen[0]) 
+
+  const detailAudioButton = document.querySelector('#de')
 
 
         if (element.dataset.bird === this.currentBird.name) {

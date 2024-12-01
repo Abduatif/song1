@@ -36,7 +36,7 @@ export class UIUpdater {
             <h2 class="bird-name">${bird.name}</h2>
             <p class="bird-species">${bird.species}</p>
             <div class="audio-player">
-                <button class="play-btn" data-audio="${bird.audio}" id="mysteryAudioButton" aria-label="Play">▶</button>
+                <button class="play-btn" data-audio="${bird.audio}" id="detailAudioButton" aria-label="Play">▶</button>
                 <div class="progress-bar">
                     <div class="progress" id="mysteryProgress"></div>
                 </div>
@@ -71,16 +71,24 @@ export class UIUpdater {
 
     clear() {
         const birdDetail = document.querySelector('.bird-details')
-        const mysteryBirdImage= document.querySelector('#mysteryBirdImage')
-        const bmysteryBirdName = document.querySelector('#mysteryBirdName')
-        const specis = document.querySelector('#specis')
-        const mysteryAudioButton = document.querySelector('#mysteryAudioButton')
+        const  mysterybrid = document.querySelector('.mystery-bird')
 
-        mysteryAudioButton.dataset.audio ='';
-        bmysteryBirdName.textContent = '*****';
-        specis.textContent ='*****';
-        mysteryBirdImage.src = './assets/images/bird.jpg';
-
+      mysterybrid.innerHTML = `
+       <div class="mystery-bird">
+                    <img id="mysteryBirdImage" src="./assets/images/bird.jpg" alt="Mystery Bird" />
+                    <div class="mystery-bottom">
+                        <h2 id="mysteryBirdName">******</h2>
+                        <p id="specis">*****</p>
+                        <div class="audio-player">
+                            <button class="play-button" id="mysteryAudioButton" aria-label="Play">▶</button>
+                            <div class="progress-bar">
+                                <div class="progress" id="mysteryProgress"></div>
+                            </div>
+                            <span class="time" id="mysteryTime">00:00 / 00:00</span>
+                        </div>
+                        <input  type="range" name="volume" id="volume">
+                    </div>
+      `
         birdDetail.innerHTML = `
          <p>Послушайте плеер.<br>Выберите птицу из списка.</p>
         `
